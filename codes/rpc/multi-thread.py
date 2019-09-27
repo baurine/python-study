@@ -37,6 +37,22 @@ def ping(conn, params):
     send_result(conn, "pong", params)
 
 
+def cal_fab(times):
+    a, b = 1, 2
+    i = 0
+    while i < times:
+        i = i + 1
+        a = a + b
+        tmp = b
+        b = a
+        a = tmp
+    return a
+
+
+def fab(conn, params):
+    send_result(conn, "fab_res", cal_fab(params))
+
+
 def send_result(conn, out, params):
     body = json.dumps({"out": out, "params": params})
     len_prefix = struct.pack("I", len(body))
@@ -52,7 +68,8 @@ def start():
     sock.bind(("localhost", 8080))
     sock.listen(1)
     handlers = {
-        "ping": ping
+        "ping": ping,
+        "fab": fab
     }
     loop(sock, handlers)
 

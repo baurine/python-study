@@ -29,6 +29,10 @@ def req():
         out, result = rpc(s, "ping", "ireader %d" % i)
         print out, result
         time.sleep(1)
+
+        out, result = rpc(s, "fab", i+1)
+        print out, result
+        time.sleep(1)
     s.close()
 
 
