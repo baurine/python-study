@@ -1,5 +1,6 @@
 # coding: utf-8
 # client
+# python2
 
 import socket
 
